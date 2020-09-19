@@ -5,21 +5,12 @@
 {% endblock %}
 
 {% block body %}
-    {% if empty %}
-    <h1>No result found.</h1>
-    <p>No result was found for {{ page_name }}.</p>
-    
-    {% else %}
-
     <h1>Results for "{{ page_name }}":</h1>
-
     <ul>
         {% for entry in list %}
             <li><a href="{{ entry }}">{{ entry }}</a></li>
         {% endfor %}
     </ul>
-
-    {% endif %}
 
     
 

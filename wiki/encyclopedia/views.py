@@ -22,11 +22,15 @@ def index(request):
             for entry in util.list_entries():
                 if page_name.lower() in entry.lower():
                     matching_list.append(entry)
-            return render(request, "encyclopedia/search.html", {
-                "empty": matching_list == [],
-                "list": matching_list,
-                "page_name": page_name
-            })
+            if matching_list == []:
+                return render(request, "encyclopedia/error.html", {
+                    "page_name": page_name
+                })
+            else:
+                return render(request, "encyclopedia/search.html", {
+                    "list": matching_list,
+                    "page_name": page_name
+                })
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries()
     })
